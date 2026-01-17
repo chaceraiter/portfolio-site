@@ -294,6 +294,28 @@
         margin-top: 22px;
       }
 
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .main-col {
+        min-width: 0;
+      }
+
+      .rail-col {
+        display: none;
+        min-width: 0;
+      }
+
+      .rail {
+        display: grid;
+        gap: 14px;
+        align-content: start;
+      }
+
       .section-head {
         display: flex;
         align-items: baseline;
@@ -444,7 +466,7 @@
         line-height: 1.55;
       }
 
-      .writing .list {
+      .list {
         display: grid;
         gap: 10px;
       }
@@ -591,6 +613,21 @@
         }
       }
 
+      @media (min-width: 980px) {
+        .content-grid {
+          grid-template-columns: 1fr 340px;
+        }
+        .rail-col {
+          display: block;
+        }
+        .writing {
+          grid-template-columns: 1fr;
+        }
+        .writing .list {
+          display: none;
+        }
+      }
+
       @media (max-width: 520px) {
         .topbar {
           padding: 10px 10px;
@@ -687,6 +724,8 @@
           </aside>
         </section>
 
+        <div class="content-grid" aria-label="Main content with sidebar">
+          <div class="main-col">
         <section class="section projects" id="projects" aria-label="Projects">
           <div class="section-head">
             <h2>Projects</h2>
@@ -878,6 +917,56 @@
             </div>
           </div>
         </section>
+          </div>
+
+          <aside class="rail-col" aria-label="Sidebar">
+            <div class="rail">
+              <div class="panel" aria-label="Writing sidebar">
+                <h3>Writing</h3>
+                <p>Short previews. Keep it calm: 2–4 items.</p>
+                <div class="list" aria-label="Writing previews (placeholder)">
+                  <a class="post" href="#" aria-label="Post (placeholder)">
+                    <strong>Post title (placeholder)</strong>
+                    <span>1–2 lines describing the post</span>
+                  </a>
+                  <a class="post" href="#" aria-label="Post (placeholder)">
+                    <strong>Another post (placeholder)</strong>
+                    <span>What someone will learn from it</span>
+                  </a>
+                  <a class="post" href="#" aria-label="Post (placeholder)">
+                    <strong>Third post (placeholder)</strong>
+                    <span>Short subtitle / topic</span>
+                  </a>
+                </div>
+                <div class="hero-ctas" style="margin-top: 10px">
+                  <a class="btn" href="#" aria-label="Blog link (placeholder)">Read the blog</a>
+                </div>
+              </div>
+
+              <div class="panel" aria-label="X sidebar">
+                <h3>On X</h3>
+                <p>Short excerpts that link out.</p>
+                <div class="list" aria-label="X feed (placeholder)">
+                  <a class="post" href="#" aria-label="X post (placeholder)">
+                    <strong>Short post excerpt (placeholder)</strong>
+                    <span>1–2 lines. Link to the full post on X.</span>
+                  </a>
+                  <a class="post" href="#" aria-label="X post (placeholder)">
+                    <strong>Another excerpt (placeholder)</strong>
+                    <span>Tech thoughts, mini-updates, links.</span>
+                  </a>
+                  <a class="post" href="#" aria-label="X post (placeholder)">
+                    <strong>Third excerpt (placeholder)</strong>
+                    <span>Something shippable and concrete.</span>
+                  </a>
+                </div>
+                <div class="hero-ctas" style="margin-top: 10px">
+                  <a class="btn" href="#" aria-label="Follow on X (placeholder)">Follow on X</a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
 
         <footer>
           <div>© <span id="year"></span> Chace Raiter</div>
