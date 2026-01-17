@@ -18,7 +18,7 @@
         --shadow: none;
         --radius: 18px;
         --radius2: 14px;
-        --max: 1120px;
+        --max: 1240px;
         --primary-bg: #111111;
         --primary-text: #ffffff;
       }
@@ -297,7 +297,7 @@
       .content-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 28px;
         align-items: start;
       }
 
@@ -615,10 +615,13 @@
 
       @media (min-width: 980px) {
         .content-grid {
-          grid-template-columns: 1fr 340px;
+          grid-template-columns: 1fr 300px;
         }
         .rail-col {
           display: block;
+        }
+        .card {
+          grid-column: span 6;
         }
         .writing {
           grid-template-columns: 1fr;
