@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,33 +7,33 @@
     <meta name="color-scheme" content="dark light" />
     <style>
       :root {
-        --bg: #0b0f19;
-        --bg2: #070a12;
-        --surface: rgba(255, 255, 255, 0.06);
-        --surface2: rgba(255, 255, 255, 0.09);
-        --border: rgba(255, 255, 255, 0.12);
-        --text: rgba(255, 255, 255, 0.92);
-        --muted: rgba(255, 255, 255, 0.68);
-        --muted2: rgba(255, 255, 255, 0.55);
-        --brand: #7c5cff;
-        --brand2: #3dd6ff;
-        --danger: #ff4d6d;
-        --shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+        --bg: #fbfbfd;
+        --bg2: #f4f6fb;
+        --surface: #ffffff;
+        --surface2: #f5f6f8;
+        --border: rgba(17, 17, 17, 0.14);
+        --text: rgba(17, 17, 17, 0.92);
+        --muted: rgba(17, 17, 17, 0.7);
+        --muted2: rgba(17, 17, 17, 0.55);
+        --shadow: none;
         --radius: 18px;
         --radius2: 14px;
         --max: 1120px;
+        --primary-bg: #111111;
+        --primary-text: #ffffff;
       }
 
-      [data-theme="light"] {
-        --bg: #fbfbfd;
-        --bg2: #f4f6fb;
-        --surface: rgba(0, 0, 0, 0.04);
-        --surface2: rgba(0, 0, 0, 0.06);
-        --border: rgba(0, 0, 0, 0.12);
-        --text: rgba(0, 0, 0, 0.88);
-        --muted: rgba(0, 0, 0, 0.64);
-        --muted2: rgba(0, 0, 0, 0.52);
-        --shadow: 0 16px 55px rgba(10, 18, 40, 0.12);
+      [data-theme="dark"] {
+        --bg: #0b0f19;
+        --bg2: #070a12;
+        --surface: #0f1424;
+        --surface2: #121a2e;
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.7);
+        --muted2: rgba(255, 255, 255, 0.56);
+        --primary-bg: #ffffff;
+        --primary-text: #111111;
       }
 
       * {
@@ -58,10 +58,7 @@
           "Apple Color Emoji",
           "Segoe UI Emoji";
         color: var(--text);
-        background:
-          radial-gradient(1200px 700px at 20% -10%, color-mix(in oklab, var(--brand) 25%, transparent), transparent 55%),
-          radial-gradient(900px 520px at 85% 10%, color-mix(in oklab, var(--brand2) 20%, transparent), transparent 58%),
-          linear-gradient(180deg, var(--bg), var(--bg2));
+        background: linear-gradient(180deg, var(--bg), var(--bg2));
       }
 
       a {
@@ -90,7 +87,7 @@
       .wrap {
         max-width: var(--max);
         margin: 0 auto;
-        padding: 28px 20px 80px;
+        padding: 0 20px 80px;
       }
 
       .topbar {
@@ -98,14 +95,10 @@
         align-items: center;
         justify-content: space-between;
         gap: 16px;
-        padding: 12px 14px;
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        background: color-mix(in oklab, var(--surface) 92%, transparent);
-        backdrop-filter: blur(14px);
-        box-shadow: var(--shadow);
-        position: sticky;
-        top: 14px;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+        background: transparent;
+        position: relative;
         z-index: 20;
       }
 
@@ -120,10 +113,8 @@
         width: 34px;
         height: 34px;
         border-radius: 12px;
-        background:
-          radial-gradient(18px 18px at 30% 25%, rgba(255, 255, 255, 0.55), transparent 60%),
-          linear-gradient(135deg, var(--brand), var(--brand2));
-        box-shadow: 0 12px 30px color-mix(in oklab, var(--brand) 20%, transparent);
+        background: var(--surface);
+        border: 1px solid var(--border);
       }
 
       .brand strong {
@@ -150,19 +141,15 @@
       .nav a {
         font-size: 13px;
         color: var(--muted);
-        padding: 10px 10px;
-        border-radius: 12px;
-        border: 1px solid transparent;
+        padding: 6px 0;
+        border-bottom: 1px solid transparent;
         transition:
-          background 140ms ease,
-          border-color 140ms ease,
           color 140ms ease;
       }
 
       .nav a:hover {
-        background: var(--surface2);
-        border-color: var(--border);
         color: var(--text);
+        border-bottom-color: var(--border);
       }
 
       .actions {
@@ -182,11 +169,10 @@
         padding: 10px 12px;
         border-radius: 14px;
         border: 1px solid var(--border);
-        background: var(--surface);
+        background: transparent;
         color: var(--text);
         cursor: pointer;
         transition:
-          transform 120ms ease,
           background 140ms ease,
           border-color 140ms ease;
         user-select: none;
@@ -195,33 +181,24 @@
 
       .btn:hover {
         background: var(--surface2);
-        transform: translateY(-1px);
       }
 
       .btn:active {
-        transform: translateY(0px);
+        background: var(--surface2);
       }
 
       .btn.primary {
-        border-color: color-mix(in oklab, var(--brand) 55%, var(--border));
-        background:
-          radial-gradient(120px 60px at 35% 25%, rgba(255, 255, 255, 0.18), transparent 60%),
-          linear-gradient(135deg, color-mix(in oklab, var(--brand) 82%, black), color-mix(in oklab, var(--brand2) 70%, black));
-        box-shadow: 0 18px 48px color-mix(in oklab, var(--brand) 20%, transparent);
+        border-color: var(--primary-bg);
+        background: var(--primary-bg);
+        color: var(--primary-text);
       }
 
       .btn.primary:hover {
-        border-color: color-mix(in oklab, var(--brand2) 55%, var(--border));
+        background: var(--primary-bg);
       }
 
       .btn.ghost {
         background: transparent;
-      }
-
-      .btn .icon {
-        width: 16px;
-        height: 16px;
-        display: inline-block;
       }
 
       .hero {
@@ -232,31 +209,19 @@
         align-items: start;
       }
 
-      .kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 10px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: color-mix(in oklab, var(--surface) 92%, transparent);
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      .kicker .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, var(--brand), var(--brand2));
-        box-shadow: 0 10px 22px color-mix(in oklab, var(--brand) 25%, transparent);
-      }
-
       h1 {
         margin: 14px 0 10px;
         font-size: clamp(36px, 4vw, 54px);
         line-height: 1.02;
         letter-spacing: -0.04em;
+      }
+
+      .headline {
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.55;
+        max-width: 60ch;
       }
 
       .lede {
@@ -283,16 +248,9 @@
         font-size: 12px;
       }
 
-      .pill {
-        border: 1px solid var(--border);
-        background: var(--surface);
-        border-radius: 999px;
-        padding: 8px 10px;
-      }
-
       .hero-card {
         border: 1px solid var(--border);
-        background: color-mix(in oklab, var(--surface) 92%, transparent);
+        background: var(--surface);
         border-radius: var(--radius);
         padding: 12px;
         box-shadow: var(--shadow);
@@ -301,10 +259,7 @@
       .portrait {
         border-radius: var(--radius2);
         aspect-ratio: 1 / 1;
-        background:
-          radial-gradient(260px 200px at 30% 20%, color-mix(in oklab, var(--brand) 45%, transparent), transparent 60%),
-          radial-gradient(260px 220px at 80% 30%, color-mix(in oklab, var(--brand2) 35%, transparent), transparent 60%),
-          linear-gradient(180deg, color-mix(in oklab, var(--surface2) 70%, transparent), color-mix(in oklab, var(--surface) 70%, transparent));
+        background: var(--surface2);
         border: 1px solid var(--border);
         overflow: hidden;
         position: relative;
@@ -368,7 +323,7 @@
         grid-column: span 4;
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        background: color-mix(in oklab, var(--surface) 92%, transparent);
+        background: var(--surface);
         overflow: hidden;
         box-shadow: var(--shadow);
         display: grid;
@@ -378,30 +333,8 @@
 
       .thumb {
         position: relative;
-        background:
-          linear-gradient(135deg, color-mix(in oklab, var(--brand) 55%, transparent), transparent 50%),
-          linear-gradient(225deg, color-mix(in oklab, var(--brand2) 40%, transparent), transparent 50%),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+        background: var(--surface2);
         border-bottom: 1px solid var(--border);
-      }
-
-      [data-theme="light"] .thumb {
-        background:
-          linear-gradient(135deg, color-mix(in oklab, var(--brand) 30%, transparent), transparent 55%),
-          linear-gradient(225deg, color-mix(in oklab, var(--brand2) 22%, transparent), transparent 55%),
-          linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.02));
-      }
-
-      .thumb .label {
-        position: absolute;
-        left: 12px;
-        top: 12px;
-        padding: 8px 10px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: color-mix(in oklab, var(--surface) 92%, transparent);
-        font-size: 12px;
-        color: var(--muted);
       }
 
       .card-body {
@@ -437,26 +370,46 @@
         line-height: 1.5;
       }
 
-      .tags {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-
-      .tag {
+      .stack {
         font-size: 12px;
-        color: var(--muted);
-        border: 1px solid var(--border);
-        background: var(--surface);
-        padding: 7px 9px;
-        border-radius: 999px;
+        color: var(--muted2);
+        line-height: 1.4;
       }
 
       .card-actions {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
+        display: flex;
+        gap: 12px;
         margin-top: 4px;
+        flex-wrap: wrap;
+      }
+
+      .card-actions a {
+        font-size: 14px;
+        font-weight: 600;
+        border-bottom: 1px solid var(--border);
+        padding: 6px 0;
+      }
+
+      .card-actions a:hover {
+        color: var(--text);
+        border-bottom-color: var(--text);
+      }
+
+      .card-actions a:focus {
+        outline: 2px solid rgba(0, 0, 0, 0.2);
+        outline-offset: 3px;
+      }
+
+      [data-theme="dark"] .card-actions a:focus {
+        outline: 2px solid rgba(255, 255, 255, 0.25);
+      }
+
+      .card-actions a.primary-link {
+        border-bottom-color: var(--primary-bg);
+      }
+
+      .card-actions a.primary-link:hover {
+        border-bottom-color: var(--text);
       }
 
       .card-actions .btn {
@@ -465,19 +418,11 @@
         font-size: 14px;
       }
 
-      .card-actions .btn.video {
-        border-color: color-mix(in oklab, var(--brand2) 35%, var(--border));
-      }
-
-      .card-actions .btn.github {
-        border-color: color-mix(in oklab, var(--text) 20%, var(--border));
-      }
-
       .writing {
         grid-column: span 12;
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        background: color-mix(in oklab, var(--surface) 92%, transparent);
+        background: var(--surface);
         box-shadow: var(--shadow);
         padding: 14px;
         display: grid;
@@ -504,10 +449,27 @@
         gap: 10px;
       }
 
+      .subhead {
+        margin: 0 0 8px;
+        font-size: 12px;
+        color: var(--muted2);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .subsection {
+        border-top: 1px solid var(--border);
+        padding-top: 12px;
+        margin-top: 12px;
+        display: grid;
+        gap: 10px;
+        align-content: start;
+      }
+
       .post {
         border: 1px solid var(--border);
         border-radius: var(--radius2);
-        background: var(--surface);
+        background: var(--surface2);
         padding: 12px;
         display: grid;
         gap: 4px;
@@ -533,7 +495,7 @@
       .panel {
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        background: color-mix(in oklab, var(--surface) 92%, transparent);
+        background: var(--surface);
         box-shadow: var(--shadow);
         padding: 14px;
       }
@@ -567,7 +529,7 @@
         width: 100%;
         border-radius: 14px;
         border: 1px solid var(--border);
-        background: var(--surface);
+        background: transparent;
         color: var(--text);
         padding: 12px 12px;
         font-size: 13px;
@@ -583,8 +545,15 @@
       textarea:focus,
       .btn:focus,
       .nav a:focus {
-        outline: 2px solid color-mix(in oklab, var(--brand2) 55%, transparent);
+        outline: 2px solid rgba(0, 0, 0, 0.18);
         outline-offset: 2px;
+      }
+
+      [data-theme="dark"] input:focus,
+      [data-theme="dark"] textarea:focus,
+      [data-theme="dark"] .btn:focus,
+      [data-theme="dark"] .nav a:focus {
+        outline: 2px solid rgba(255, 255, 255, 0.22);
       }
 
       footer {
@@ -643,7 +612,7 @@
           <div class="mark" aria-hidden="true"></div>
           <div>
             <strong>Chace Raiter</strong>
-            <span>Portfolio · Engineer</span>
+            <span>Portfolio</span>
           </div>
         </a>
 
@@ -655,36 +624,8 @@
         </nav>
 
         <div class="actions">
-          <button class="btn ghost" id="themeToggle" type="button" aria-label="Toggle theme">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                />
-                <path
-                  d="M12 2v2.5M12 19.5V22M22 12h-2.5M4.5 12H2M19.8 4.2l-1.8 1.8M6 18l-1.8 1.8M19.8 19.8 18 18M6 6 4.2 4.2"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </span>
-            Theme
-          </button>
+          <button class="btn ghost" id="themeToggle" type="button" aria-label="Toggle theme">Theme</button>
           <a class="btn primary" href="#contact">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M20 6 9 17l-5-5"
-                  stroke="currentColor"
-                  stroke-width="1.9"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </span>
             Let’s Talk
           </a>
         </div>
@@ -693,58 +634,29 @@
       <main id="content">
         <section class="hero" id="top">
           <div>
-            <div class="kicker">
-              <span class="dot" aria-hidden="true"></span>
-              Building polished products and pragmatic systems
-            </div>
-            <h1>Engineer who ships fast, designs clean, and documents decisions.</h1>
-            <p class="lede">
-              This is a static mockup for critique. The intent is a simple homepage that quickly communicates who I am,
-              what I build, and where to click: Live demo, video walkthrough, and GitHub for each project.
-            </p>
+            <h1>Chace Raiter</h1>
+            <p class="headline">Projects with live instances, walkthrough videos, and code.</p>
+            <p class="lede">This is a static mockup for critique: minimal, content-forward, and easy to scan.</p>
 
             <div class="hero-ctas">
               <a class="btn primary" href="#projects">
-                <span class="icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M12 5v14M5 12h14"
-                      stroke="currentColor"
-                      stroke-width="1.9"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </span>
                 View Projects
               </a>
               <a class="btn" href="#" aria-label="Resume link (placeholder)">
-                <span class="icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M12 3v10m0 0 4-4m-4 4-4-4"
-                      stroke="currentColor"
-                      stroke-width="1.9"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"
-                      stroke="currentColor"
-                      stroke-width="1.9"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </span>
                 Resume
               </a>
               <a class="btn" href="#" aria-label="GitHub link (placeholder)">GitHub</a>
               <a class="btn" href="#" aria-label="LinkedIn link (placeholder)">LinkedIn</a>
+              <a class="btn" href="#" aria-label="X/Twitter link (placeholder)">X</a>
+              <a class="btn" href="#" aria-label="YouTube link (placeholder)">YouTube</a>
             </div>
 
             <div class="meta" id="about">
-              <span class="pill">Focus: product engineering</span>
-              <span class="pill">Interests: dev tools, UX, systems</span>
-              <span class="pill">Location: (set later)</span>
+              <span>Focus: product engineering</span>
+              <span>·</span>
+              <span>Interests: dev tools, UX, systems</span>
+              <span>·</span>
+              <span>Location: (set later)</span>
             </div>
           </div>
 
@@ -771,7 +683,7 @@
               </svg>
             </div>
             <h3>What this page should answer</h3>
-            <p>In ~20 seconds: who I am, what I’m best at, and proof via projects with clear demo/video/code links.</p>
+            <p>Who I am, what I build, and proof via projects with Live / Video / GitHub links.</p>
           </aside>
         </section>
 
@@ -784,7 +696,6 @@
           <div class="grid">
             <article class="card" aria-label="Project tile mock">
               <div class="thumb">
-                <div class="label">Featured</div>
               </div>
               <div class="card-body">
                 <div class="card-title">
@@ -795,22 +706,17 @@
                   One-sentence impact statement. What changed? What shipped? Who benefited? Keep it concrete and
                   measurable when possible.
                 </p>
-                <div class="tags">
-                  <span class="tag">TypeScript</span>
-                  <span class="tag">React</span>
-                  <span class="tag">API</span>
-                </div>
+                <div class="stack">Stack: TypeScript · React · API</div>
                 <div class="card-actions">
-                  <a class="btn" href="#" aria-label="Live demo (placeholder)">Live</a>
-                  <a class="btn video" href="#" aria-label="Video demo (placeholder)">Video</a>
-                  <a class="btn github" href="#" aria-label="GitHub repo (placeholder)">GitHub</a>
+                  <a class="primary-link" href="#" aria-label="Live demo (placeholder)">Live</a>
+                  <a href="#" aria-label="Video demo (placeholder)">Video</a>
+                  <a href="#" aria-label="GitHub repo (placeholder)">GitHub</a>
                 </div>
               </div>
             </article>
 
             <article class="card" aria-label="Project tile mock">
               <div class="thumb">
-                <div class="label">Product</div>
               </div>
               <div class="card-body">
                 <div class="card-title">
@@ -820,22 +726,17 @@
                 <p class="card-desc">
                   Short description focused on what’s interesting: constraints, scale, UX challenge, or system design.
                 </p>
-                <div class="tags">
-                  <span class="tag">Python</span>
-                  <span class="tag">FastAPI</span>
-                  <span class="tag">Postgres</span>
-                </div>
+                <div class="stack">Stack: Python · FastAPI · Postgres</div>
                 <div class="card-actions">
-                  <a class="btn" href="#" aria-label="Live demo (placeholder)">Live</a>
-                  <a class="btn video" href="#" aria-label="Video demo (placeholder)">Video</a>
-                  <a class="btn github" href="#" aria-label="GitHub repo (placeholder)">GitHub</a>
+                  <a class="primary-link" href="#" aria-label="Live demo (placeholder)">Live</a>
+                  <a href="#" aria-label="Video demo (placeholder)">Video</a>
+                  <a href="#" aria-label="GitHub repo (placeholder)">GitHub</a>
                 </div>
               </div>
             </article>
 
             <article class="card" aria-label="Project tile mock">
               <div class="thumb">
-                <div class="label">Tooling</div>
               </div>
               <div class="card-body">
                 <div class="card-title">
@@ -845,22 +746,17 @@
                 <p class="card-desc">
                   A quick pitch for the tool and why it exists. Highlight speedups or reliability improvements.
                 </p>
-                <div class="tags">
-                  <span class="tag">Go</span>
-                  <span class="tag">CI</span>
-                  <span class="tag">DX</span>
-                </div>
+                <div class="stack">Stack: Go · CI · DX</div>
                 <div class="card-actions">
-                  <a class="btn" href="#" aria-label="Live demo (placeholder)">Live</a>
-                  <a class="btn video" href="#" aria-label="Video demo (placeholder)">Video</a>
-                  <a class="btn github" href="#" aria-label="GitHub repo (placeholder)">GitHub</a>
+                  <a class="primary-link" href="#" aria-label="Live demo (placeholder)">Live</a>
+                  <a href="#" aria-label="Video demo (placeholder)">Video</a>
+                  <a href="#" aria-label="GitHub repo (placeholder)">GitHub</a>
                 </div>
               </div>
             </article>
 
             <article class="card" aria-label="Project tile mock">
               <div class="thumb">
-                <div class="label">Experiment</div>
               </div>
               <div class="card-body">
                 <div class="card-title">
@@ -870,15 +766,11 @@
                 <p class="card-desc">
                   Useful for showcasing UI taste: interactions, animation restraint, accessibility, and polish.
                 </p>
-                <div class="tags">
-                  <span class="tag">UX</span>
-                  <span class="tag">A11y</span>
-                  <span class="tag">Perf</span>
-                </div>
+                <div class="stack">Stack: UX · Accessibility · Performance</div>
                 <div class="card-actions">
-                  <a class="btn" href="#" aria-label="Live demo (placeholder)">Live</a>
-                  <a class="btn video" href="#" aria-label="Video demo (placeholder)">Video</a>
-                  <a class="btn github" href="#" aria-label="GitHub repo (placeholder)">GitHub</a>
+                  <a class="primary-link" href="#" aria-label="Live demo (placeholder)">Live</a>
+                  <a href="#" aria-label="Video demo (placeholder)">Video</a>
+                  <a href="#" aria-label="GitHub repo (placeholder)">GitHub</a>
                 </div>
               </div>
             </article>
@@ -894,28 +786,45 @@
             <div class="writing">
               <div>
                 <h3>Posts that show how I think</h3>
-                <p>
-                  This section could show 3–5 recent posts, or just a “Read the blog” call-to-action. The goal is proof
-                  of clarity: decisions, tradeoffs, and lessons learned.
-                </p>
+                <p>This can be a single link to a blog, or (later) a small list of posts.</p>
                 <div class="hero-ctas" style="margin-top: 12px">
                   <a class="btn" href="#" aria-label="Blog link (placeholder)">Read the blog</a>
                   <a class="btn ghost" href="#contact">Ask me about a post</a>
                 </div>
               </div>
               <div class="list" aria-label="Post list mock">
+                <div>
+                  <div class="subhead">Recent Writing</div>
+                </div>
                 <a class="post" href="#" aria-label="Post (placeholder)">
-                  <strong>How I approach product engineering</strong>
-                  <span>Notes on scope, quality, and velocity</span>
+                  <strong>Post title (placeholder)</strong>
+                  <span>1–2 lines describing the post</span>
                 </a>
                 <a class="post" href="#" aria-label="Post (placeholder)">
-                  <strong>Shipping UI that feels “expensive”</strong>
-                  <span>Small details: spacing, states, hierarchy</span>
+                  <strong>Another post (placeholder)</strong>
+                  <span>What someone will learn from it</span>
                 </a>
                 <a class="post" href="#" aria-label="Post (placeholder)">
-                  <strong>Making tradeoffs explicit</strong>
-                  <span>Architectures that stay maintainable</span>
+                  <strong>Third post (placeholder)</strong>
+                  <span>Short subtitle / topic</span>
                 </a>
+
+                <div class="subsection" aria-label="X feed mock">
+                  <div class="subhead">On X</div>
+                  <a class="post" href="#" aria-label="X post (placeholder)">
+                    <strong>Short post excerpt (placeholder)</strong>
+                    <span>1–2 lines. Link to the full post on X.</span>
+                  </a>
+                  <a class="post" href="#" aria-label="X post (placeholder)">
+                    <strong>Another excerpt (placeholder)</strong>
+                    <span>Tech thoughts, mini-updates, links.</span>
+                  </a>
+                  <a class="post" href="#" aria-label="X post (placeholder)">
+                    <strong>Third excerpt (placeholder)</strong>
+                    <span>Something shippable and concrete.</span>
+                  </a>
+                  <a class="btn" href="#" aria-label="Follow on X (placeholder)" style="justify-self: start">Follow on X</a>
+                </div>
               </div>
             </div>
           </div>
@@ -957,10 +866,13 @@
                   <a class="btn" href="#" aria-label="Calendar link (placeholder)">Calendar</a>
                   <a class="btn" href="#" aria-label="GitHub link (placeholder)">GitHub</a>
                   <a class="btn" href="#" aria-label="LinkedIn link (placeholder)">LinkedIn</a>
+                  <a class="btn" href="#" aria-label="X/Twitter link (placeholder)">X</a>
+                  <a class="btn" href="#" aria-label="YouTube link (placeholder)">YouTube</a>
                 </div>
                 <div class="meta" style="margin-top: 12px">
-                  <span class="pill">Availability: (set later)</span>
-                  <span class="pill">Time zone: (set later)</span>
+                  <span>Availability: (set later)</span>
+                  <span>·</span>
+                  <span>Time zone: (set later)</span>
                 </div>
               </div>
             </div>
@@ -979,12 +891,18 @@
       const key = "portfolio_theme"
       const saved = localStorage.getItem(key)
       if (saved === "light" || saved === "dark") root.dataset.theme = saved
+      if (!root.dataset.theme) root.dataset.theme = "light"
 
       const toggle = document.getElementById("themeToggle")
+      const setToggleLabel = () => {
+        toggle.textContent = root.dataset.theme === "dark" ? "Light theme" : "Dark theme"
+      }
+      setToggleLabel()
       toggle?.addEventListener("click", () => {
         const next = root.dataset.theme === "light" ? "dark" : "light"
         root.dataset.theme = next
         localStorage.setItem(key, next)
+        setToggleLabel()
       })
 
       const year = document.getElementById("year")
