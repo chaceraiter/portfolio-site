@@ -1,0 +1,4 @@
+<!-- SYSTEM FILE - Do not modify. Copy this text into any new AI chat to bootstrap the AI context system. -->
+
+Please read ../for-robots/ai-agent-orientation-start-here.md and follow all instructions contained within.
+

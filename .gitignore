@@ -1,0 +1,19 @@
+# Local-only reference repo
+legacy/
+
+# Environment/secrets
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Logs
+*.log
