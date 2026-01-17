@@ -8,4 +8,4 @@ This is a new portfolio-site repo using an AI context system. A legacy repo was 
 
 - **Intermediate Goal:** Agree on the homepage information architecture and visual direction using a static mockup.
 
-- **Current Task:** Produce and iterate on a static homepage mockup (projects grid with thumbnail tiles + Live/Video/GitHub actions).
+- **Current Task:** Iterate on the homepage mockup layout (alignment, spacing, sidebar/rail behavior) and start defining the real content model (projects, resume, writing/X excerpts).

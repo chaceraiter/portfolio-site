@@ -21,12 +21,19 @@ Build a clean, fast, and professional personal portfolio site that showcases pro
 - Contact path that’s obvious and low-friction.
 - Responsive design with dark/light mode support.
 - Strong baseline quality: performance, accessibility, and SEO.
+- Feel genuinely personal and current (not a generic “template portfolio”).
 
 ## Core Sections (Expected)
 - Hero: name/title, short intro, key links, prominent resume download/link.
 - Projects: grid/list with tech tags, thumbnail, and clear actions per project (Live, Video Demo, GitHub), plus optional filtering/search.
 - Writing/Blog: link to external blog and/or show recent posts.
 - Contact: form (optional) + direct email + social links.
+
+## Experience Principles (High Priority)
+- Prefer simple, content-forward layout over “vibe-coded” visuals (no glassy navs, neon gradients, or placeholder-y hype copy).
+- Make content feel alive: “On X” excerpts can signal daily work/thoughts; writing signals depth.
+- Clear hierarchy: projects should be easy to scan and click; side content stays secondary.
+- Resume should be recruiter-friendly: viewable page + downloadable PDF (no surprise auto-download).
 
 ## Non-Goals (For Now)
 - Heavy CMS or complex admin tooling unless it clearly pays off.
