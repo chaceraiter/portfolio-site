@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume</title>
+    <meta name="color-scheme" content="dark light" />
+    <style>
+      :root {
+        --bg: #fbfbfd;
+        --bg2: #f4f6fb;
+        --surface: #ffffff;
+        --surface2: #f5f6f8;
+        --border: rgba(17, 17, 17, 0.14);
+        --text: rgba(17, 17, 17, 0.92);
+        --muted: rgba(17, 17, 17, 0.7);
+        --muted2: rgba(17, 17, 17, 0.55);
+        --radius: 16px;
+        --max: 940px;
+        --primary-bg: #111111;
+        --primary-text: #ffffff;
+      }
+
+      [data-theme="dark"] {
+        --bg: #0b0f19;
+        --bg2: #070a12;
+        --surface: #0f1424;
+        --surface2: #121a2e;
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.7);
+        --muted2: rgba(255, 255, 255, 0.56);
+        --primary-bg: #ffffff;
+        --primary-text: #111111;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+        color: var(--text);
+        background: linear-gradient(180deg, var(--bg), var(--bg2));
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 28px 20px 80px;
+      }
+
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 28px;
+        letter-spacing: -0.02em;
+      }
+
+      .meta {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: transparent;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .btn.primary {
+        border-color: var(--primary-bg);
+        background: var(--primary-bg);
+        color: var(--primary-text);
+      }
+
+      main {
+        margin-top: 18px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: var(--radius);
+        padding: 14px;
+      }
+
+      .card h2 {
+        margin: 0 0 8px;
+        font-size: 14px;
+        color: var(--muted2);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .placeholder {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div>
+          <h1>Resume</h1>
+          <div class="meta">
+            <a href="../mockups/homepage.html" aria-label="Back to homepage mockup">← Back</a>
+            <span> · </span>
+            <span>Last updated: (set date)</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="./resume.pdf" aria-label="View PDF">View PDF</a>
+          <a class="btn primary" href="./resume.pdf" aria-label="Download PDF" download>Download PDF</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="card" aria-label="Resume content placeholder">
+          <h2>Content</h2>
+          <div class="placeholder">
+            Replace this page with your real resume content (HTML) and/or wire the buttons to a PDF at
+            <code>resume/resume.pdf</code>.
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      const root = document.documentElement
+      const key = "portfolio_theme"
+      const saved = localStorage.getItem(key)
+      if (saved === "light" || saved === "dark") root.dataset.theme = saved
+      if (!root.dataset.theme) root.dataset.theme = "light"
+    </script>
+  </body>
+</html>

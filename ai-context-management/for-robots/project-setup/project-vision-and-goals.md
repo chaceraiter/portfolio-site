@@ -9,6 +9,7 @@ Build a clean, fast, and professional personal portfolio site that showcases pro
 - Present my work in a way that’s easy for recruiters/clients/collaborators to understand quickly.
 - Centralize links (projects, GitHub, blog, resume, contact) in a cohesive experience.
 - Keep the site maintainable so updates are easy and frequent.
+- Use the site/demos to showcase practical DevOps skills (mix of self-hosted + cloud deployments).
 
 ## Target Audience
 - Recruiters and hiring managers evaluating fit and credibility.
@@ -25,7 +26,7 @@ Build a clean, fast, and professional personal portfolio site that showcases pro
 
 ## Core Sections (Expected)
 - Hero: name/title, short intro, key links, prominent resume download/link.
-- Projects: grid/list with tech tags, thumbnail, and clear actions per project (Live, Video Demo, GitHub), plus optional filtering/search.
+- Projects: grid/list with tech tags, thumbnail, and clear actions per project (Live, Video Demo, GitHub, and optionally Docs/Photos), plus optional filtering/search.
 - Writing/Blog: link to external blog and/or show recent posts.
 - Contact: form (optional) + direct email + social links.
 
