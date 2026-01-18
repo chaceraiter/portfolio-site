@@ -247,6 +247,27 @@
         flex-wrap: wrap;
       }
 
+      .hero-ctas a {
+        font-size: 13px;
+        color: var(--text);
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius2);
+        background: transparent;
+        transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+      }
+
+      .hero-ctas a:hover {
+        background: var(--surface2);
+        border-color: var(--text);
+      }
+
+      .hero-ctas a[aria-current="page"] {
+        background: var(--primary-bg);
+        color: var(--primary-text);
+        border-color: var(--primary-bg);
+      }
+
       .meta {
         margin-top: 16px;
         display: flex;
@@ -761,17 +782,13 @@
             <p class="lede">This is a static mockup for critique: minimal, content-forward, and easy to scan.</p>
 
             <div class="hero-ctas">
-              <a class="btn primary" href="#projects" data-view-link="projects">
-                View Projects
-              </a>
-              <a class="btn" href="#resume" aria-label="Resume" data-view-link="resume">
-                Resume
-              </a>
-              <a class="btn" href="#blog" aria-label="Blog" data-view-link="writing">Blog</a>
-              <a class="btn" href="#" aria-label="GitHub link (placeholder)">GitHub</a>
-              <a class="btn" href="#" aria-label="LinkedIn link (placeholder)">LinkedIn</a>
-              <a class="btn" href="#" aria-label="X/Twitter link (placeholder)">X</a>
-              <a class="btn" href="#" aria-label="YouTube link (placeholder)">YouTube</a>
+              <a href="#projects" data-view-link="projects">View projects</a>
+              <a href="#resume" data-view-link="resume">View resume</a>
+              <a href="#blog" data-view-link="writing">View blog</a>
+              <a href="#" aria-label="GitHub link (placeholder)">GitHub</a>
+              <a href="#" aria-label="LinkedIn link (placeholder)">LinkedIn</a>
+              <a href="#" aria-label="X/Twitter link (placeholder)">X</a>
+              <a href="#" aria-label="YouTube link (placeholder)">YouTube</a>
             </div>
 
             <div class="meta" id="about">
