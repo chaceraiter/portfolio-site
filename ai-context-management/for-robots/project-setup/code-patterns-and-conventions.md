@@ -8,6 +8,7 @@
   - `thumbnail`
   - primary links: `live`, `video`, `github`
   - `status` (`wip` / `active` / `archived`) and optional “work in progress” marker text
+- Use lightweight maintenance tags in code for items that should be periodically reviewed (search for `REFRESH:`); see `MAINTENANCE.md`.
 
 ## UI Conventions
 - Default to **light theme**, keep a theme toggle.

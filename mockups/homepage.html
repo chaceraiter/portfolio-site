@@ -16,8 +16,8 @@
         --muted: rgba(17, 17, 17, 0.7);
         --muted2: rgba(17, 17, 17, 0.55);
         --shadow: none;
-        --radius: 18px;
-        --radius2: 14px;
+        --radius: 14px;
+        --radius2: 10px;
         --max: 1240px;
         --rail: 300px;
         --primary-bg: #111111;
@@ -141,16 +141,23 @@
 
       .nav a {
         font-size: 13px;
-        color: var(--muted);
-        padding: 6px 0;
-        border-bottom: 1px solid transparent;
-        transition:
-          color 140ms ease;
+        color: var(--text);
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius2);
+        background: transparent;
+        transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
       }
 
       .nav a:hover {
-        color: var(--text);
-        border-bottom-color: var(--border);
+        background: var(--surface2);
+        border-color: var(--text);
+      }
+
+      .nav a[aria-current="page"] {
+        background: var(--primary-bg);
+        color: var(--primary-text);
+        border-color: var(--primary-bg);
       }
 
       .actions {
@@ -168,7 +175,7 @@
         gap: 8px;
         font-size: 13px;
         padding: 10px 12px;
-        border-radius: 14px;
+        border-radius: var(--radius2);
         border: 1px solid var(--border);
         background: transparent;
         color: var(--text);
@@ -273,14 +280,6 @@
         display: block;
       }
 
-      .portrait svg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.9;
-      }
-
       .hero-card h3 {
         margin: 10px 2px 6px;
         font-size: 14px;
@@ -328,6 +327,45 @@
         align-content: start;
       }
 
+      .view {
+        display: none;
+      }
+
+      .view[aria-hidden="false"] {
+        display: block;
+      }
+
+      .view.section {
+        margin-top: 8px;
+      }
+
+      .view-title {
+        margin: 0 0 10px;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+      }
+
+      .view-note {
+        color: var(--muted2);
+        font-size: 13px;
+        margin: 0 0 14px;
+      }
+
+      .resume-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+
+      .pdf {
+        width: 100%;
+        height: min(78vh, 980px);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface2);
+      }
+
       .section-head {
         display: flex;
         align-items: baseline;
@@ -371,6 +409,25 @@
         border-bottom: 1px solid var(--border);
       }
 
+      .thumb .marker {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        padding: 6px 8px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius2);
+        background: var(--surface);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .thumb .marker.wip {
+        color: var(--text);
+      }
+
       .card-body {
         padding: 14px;
         display: grid;
@@ -397,6 +454,11 @@
         white-space: nowrap;
       }
 
+      .statusline {
+        font-size: 12px;
+        color: var(--muted2);
+      }
+
       .card-desc {
         margin: 0;
         color: var(--muted);
@@ -411,22 +473,28 @@
       }
 
       .card-actions {
-        display: flex;
-        gap: 12px;
-        margin-top: 4px;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 8px;
       }
 
       .card-actions a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
         font-size: 14px;
-        font-weight: 600;
-        border-bottom: 1px solid var(--border);
-        padding: 6px 0;
+        font-weight: 650;
+        border: 1px solid var(--border);
+        border-radius: var(--radius2);
+        padding: 11px 10px;
+        background: transparent;
       }
 
       .card-actions a:hover {
-        color: var(--text);
-        border-bottom-color: var(--text);
+        background: var(--surface2);
+        border-color: var(--text);
       }
 
       .card-actions a:focus {
@@ -439,17 +507,14 @@
       }
 
       .card-actions a.primary-link {
-        border-bottom-color: var(--primary-bg);
+        background: var(--primary-bg);
+        color: var(--primary-text);
+        border-color: var(--primary-bg);
       }
 
       .card-actions a.primary-link:hover {
-        border-bottom-color: var(--text);
-      }
-
-      .card-actions .btn {
-        padding: 12px 10px;
-        border-radius: 14px;
-        font-size: 14px;
+        background: var(--primary-bg);
+        border-color: var(--primary-bg);
       }
 
       .writing {
@@ -637,16 +702,13 @@
           display: block;
         }
         .rail {
-          margin-top: 34px;
+          margin-top: var(--rail-offset, 0px);
         }
         .card {
           grid-column: span 6;
         }
         .writing {
           grid-template-columns: 1fr;
-        }
-        .writing .list {
-          display: none;
         }
       }
 
@@ -676,15 +738,16 @@
         </a>
 
         <nav class="nav" aria-label="Primary">
-          <a href="#projects">Projects</a>
-          <a href="#writing">Writing</a>
-          <a href="#contact">Contact</a>
+          <a href="#projects" data-view-link="projects">View projects</a>
+          <a href="#resume" data-view-link="resume">View resume</a>
+          <a href="#blog" data-view-link="writing">View blog</a>
+          <a href="#contact" data-view-link="contact">Contact</a>
           <a href="#about">About</a>
         </nav>
 
         <div class="actions">
           <button class="btn ghost" id="themeToggle" type="button" aria-label="Toggle theme">Theme</button>
-          <a class="btn primary" href="#contact">
+          <a class="btn primary" href="#contact" data-view-link="contact">
             Let’s Talk
           </a>
         </div>
@@ -698,12 +761,13 @@
             <p class="lede">This is a static mockup for critique: minimal, content-forward, and easy to scan.</p>
 
             <div class="hero-ctas">
-              <a class="btn primary" href="#projects">
+              <a class="btn primary" href="#projects" data-view-link="projects">
                 View Projects
               </a>
-              <a class="btn" href="../resume/" aria-label="Resume">
+              <a class="btn" href="#resume" aria-label="Resume" data-view-link="resume">
                 Resume
               </a>
+              <a class="btn" href="#blog" aria-label="Blog" data-view-link="writing">Blog</a>
               <a class="btn" href="#" aria-label="GitHub link (placeholder)">GitHub</a>
               <a class="btn" href="#" aria-label="LinkedIn link (placeholder)">LinkedIn</a>
               <a class="btn" href="#" aria-label="X/Twitter link (placeholder)">X</a>
@@ -734,7 +798,7 @@
 
         <div class="content-grid" aria-label="Main content with sidebar">
           <div class="main-col">
-        <section class="section projects" id="projects" aria-label="Projects">
+        <section class="view section projects" id="view-projects" data-view="projects" aria-hidden="false" aria-label="Projects">
           <div class="section-head">
             <h2>Projects</h2>
             <div class="hint">Each tile: thumbnail + Live, Video, GitHub, Docs</div>
@@ -743,12 +807,14 @@
           <div class="grid">
             <article class="card" aria-label="Project tile mock">
               <div class="thumb">
+                <div class="marker wip">WIP</div>
               </div>
               <div class="card-body">
                 <div class="card-title">
                   <h3>Project Name</h3>
                   <div class="time">2025</div>
                 </div>
+                <div class="statusline">Status: work in progress</div>
                 <p class="card-desc">
                   One-sentence impact statement. What changed? What shipped? Who benefited? Keep it concrete and
                   measurable when possible.
@@ -765,12 +831,14 @@
 
             <article class="card" aria-label="Project tile mock">
               <div class="thumb">
+                <div class="marker wip">Under construction</div>
               </div>
               <div class="card-body">
                 <div class="card-title">
                   <h3>Another Project</h3>
                   <div class="time">2024</div>
                 </div>
+                <div class="statusline">Status: under construction</div>
                 <p class="card-desc">
                   Short description focused on what’s interesting: constraints, scale, UX challenge, or system design.
                 </p>
@@ -828,9 +896,21 @@
           </div>
         </section>
 
-        <section class="section" id="writing" aria-label="Writing">
+        <section class="view section" id="view-resume" data-view="resume" aria-hidden="true" aria-label="Resume">
+          <h2 class="view-title">Resume</h2>
+          <p class="view-note">
+            Last updated: Jun 2025 · <a href="../resume/index.html" target="_blank" rel="noreferrer">Open resume page</a>
+          </p>
+          <div class="resume-actions">
+            <a class="btn" href="../resume/resume.pdf" target="_blank" rel="noreferrer">Open PDF (new tab)</a>
+            <a class="btn primary" href="../resume/resume.pdf" download>Download PDF</a>
+          </div>
+          <iframe class="pdf" src="../resume/resume.pdf" title="Resume PDF preview"></iframe>
+        </section>
+
+        <section class="view section" id="view-writing" data-view="writing" aria-hidden="true" aria-label="Blog">
           <div class="section-head">
-            <h2>Writing</h2>
+            <h2>Blog</h2>
             <div class="hint">Link out or mirror later</div>
           </div>
           <div class="grid">
@@ -859,29 +939,12 @@
                   <strong>Third post (placeholder)</strong>
                   <span>Short subtitle / topic</span>
                 </a>
-
-                <div class="subsection" aria-label="X feed mock">
-                  <div class="subhead">On X</div>
-                  <a class="post" href="#" aria-label="X post (placeholder)">
-                    <strong>Short post excerpt (placeholder)</strong>
-                    <span>1–2 lines. Link to the full post on X.</span>
-                  </a>
-                  <a class="post" href="#" aria-label="X post (placeholder)">
-                    <strong>Another excerpt (placeholder)</strong>
-                    <span>Tech thoughts, mini-updates, links.</span>
-                  </a>
-                  <a class="post" href="#" aria-label="X post (placeholder)">
-                    <strong>Third excerpt (placeholder)</strong>
-                    <span>Something shippable and concrete.</span>
-                  </a>
-                  <a class="btn" href="#" aria-label="Follow on X (placeholder)" style="justify-self: start">Follow on X</a>
-                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="section" id="contact" aria-label="Contact">
+        <section class="view section" id="view-contact" data-view="contact" aria-hidden="true" aria-label="Contact">
           <div class="section-head">
             <h2>Contact</h2>
             <div class="hint">Form is non-functional in mockup</div>
@@ -934,7 +997,7 @@
           <aside class="rail-col" aria-label="Sidebar">
             <div class="rail">
               <div class="panel" aria-label="X sidebar">
-                <h3>On X</h3>
+                <h3>X / Twitter</h3>
                 <p>Daily notes and in-progress thoughts — a quick “I’m actively building” signal.</p>
                 <div class="meta" style="margin: 0 0 10px">
                   <span>Latest: (timestamp placeholder)</span>
@@ -954,29 +1017,7 @@
                   </a>
                 </div>
                 <div class="hero-ctas" style="margin-top: 10px">
-                  <a class="btn" href="#" aria-label="Follow on X (placeholder)">Follow on X</a>
-                </div>
-              </div>
-
-              <div class="panel" aria-label="Writing sidebar">
-                <h3>Writing</h3>
-                <p>Longer-form posts with context and decisions.</p>
-                <div class="list" aria-label="Writing previews (placeholder)">
-                  <a class="post" href="#" aria-label="Post (placeholder)">
-                    <strong>Post title (placeholder)</strong>
-                    <span>1–2 lines describing the post</span>
-                  </a>
-                  <a class="post" href="#" aria-label="Post (placeholder)">
-                    <strong>Another post (placeholder)</strong>
-                    <span>What someone will learn from it</span>
-                  </a>
-                  <a class="post" href="#" aria-label="Post (placeholder)">
-                    <strong>Third post (placeholder)</strong>
-                    <span>Short subtitle / topic</span>
-                  </a>
-                </div>
-                <div class="hero-ctas" style="margin-top: 10px">
-                  <a class="btn" href="#" aria-label="Blog link (placeholder)">Read the blog</a>
+                  <a class="btn" href="#" aria-label="Follow on X / Twitter (placeholder)">Follow on X / Twitter</a>
                 </div>
               </div>
             </div>
@@ -1008,6 +1049,60 @@
         localStorage.setItem(key, next)
         setToggleLabel()
       })
+
+      let railAlignTimer
+      const alignRailToActiveView = () => {
+        const desktop = window.matchMedia("(min-width: 980px)").matches
+        if (!desktop) {
+          root.style.removeProperty("--rail-offset")
+          return
+        }
+
+        const active = document.querySelector('.view[data-view][aria-hidden="false"]')
+        if (!active) return
+
+        const target = active.querySelector(".grid") ?? active
+        const activeRect = active.getBoundingClientRect()
+        const targetRect = target.getBoundingClientRect()
+        const delta = targetRect.top - activeRect.top
+
+        root.style.setProperty("--rail-offset", `${Math.max(0, delta).toFixed(2)}px`)
+      }
+
+      const getViewFromHash = () => {
+        const raw = window.location.hash.replace("#", "").trim()
+        if (raw === "blog") return "writing"
+        if (raw === "projects" || raw === "resume" || raw === "writing" || raw === "contact") return raw
+        return "projects"
+      }
+
+      const setView = (view) => {
+        const views = document.querySelectorAll(".view[data-view]")
+        for (const section of views) {
+          section.setAttribute("aria-hidden", section.getAttribute("data-view") === view ? "false" : "true")
+        }
+
+        const links = document.querySelectorAll("[data-view-link]")
+        for (const link of links) {
+          const isActive = link.getAttribute("data-view-link") === view
+          if (isActive) link.setAttribute("aria-current", "page")
+          else link.removeAttribute("aria-current")
+        }
+
+        alignRailToActiveView()
+      }
+
+      const onHashChange = () => setView(getViewFromHash())
+
+      window.addEventListener("hashchange", onHashChange)
+      onHashChange()
+
+      alignRailToActiveView()
+      window.addEventListener("resize", () => {
+        window.clearTimeout(railAlignTimer)
+        railAlignTimer = window.setTimeout(alignRailToActiveView, 80)
+      })
+      window.addEventListener("load", alignRailToActiveView)
 
       const year = document.getElementById("year")
       if (year) year.textContent = String(new Date().getFullYear())
