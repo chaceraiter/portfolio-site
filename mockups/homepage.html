@@ -92,14 +92,16 @@
       }
 
       .topbar {
-        display: flex;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
         align-items: center;
         justify-content: space-between;
         gap: 16px;
-        padding: 18px 0;
+        padding: 10px 0;
         border-bottom: 1px solid var(--border);
-        background: transparent;
-        position: relative;
+        background: var(--bg);
+        position: sticky;
+        top: 0;
         z-index: 20;
       }
 
@@ -111,11 +113,19 @@
       }
 
       .mark {
-        width: 34px;
-        height: 34px;
+        width: 28px;
+        height: 28px;
         border-radius: 12px;
         background: var(--surface);
         border: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .mark img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
       }
 
       .brand strong {
@@ -132,11 +142,7 @@
       }
 
       .nav {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: none;
       }
 
       .nav a {
@@ -160,12 +166,59 @@
         border-color: var(--primary-bg);
       }
 
+      .mid {
+        display: flex;
+        justify-content: center;
+      }
+
+      .midrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .view-indicator {
+        font-size: 12px;
+        color: var(--muted2);
+        padding: 8px 10px;
+        border-radius: var(--radius2);
+        border: 1px solid transparent;
+        white-space: nowrap;
+      }
+
+      .backtotop {
+        display: none;
+        font-size: 13px;
+        padding: 10px 12px;
+        border-radius: var(--radius2);
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .backtotop:hover {
+        background: var(--surface2);
+        border-color: var(--text);
+        color: var(--text);
+      }
+
+      [data-scrolled="true"] .backtotop {
+        display: inline-flex;
+      }
+
       .actions {
         display: flex;
         gap: 10px;
         align-items: center;
         justify-content: flex-end;
         min-width: 200px;
+      }
+
+      .actions .btn.cta {
+        padding: 12px 14px;
+        font-size: 14px;
       }
 
       .btn {
@@ -209,6 +262,34 @@
         background: transparent;
       }
 
+      .btn.invert {
+        border-color: var(--primary-bg);
+        background: var(--primary-bg);
+        color: var(--primary-text);
+      }
+
+      .btn.invert:hover {
+        background: var(--primary-bg);
+        border-color: var(--primary-bg);
+      }
+
+      .btn.contact-btn {
+        background: #dc2626;
+        border-color: #dc2626;
+        color: #ffffff;
+      }
+
+      .btn.contact-btn:hover {
+        background: #b91c1c;
+        border-color: #b91c1c;
+      }
+
+      .btn.contact-btn[aria-current="page"] {
+        background: #dc2626;
+        border-color: #dc2626;
+        color: #ffffff;
+      }
+
       .hero {
         padding: 44px 0 8px;
         display: grid;
@@ -222,6 +303,12 @@
         font-size: clamp(36px, 4vw, 54px);
         line-height: 1.02;
         letter-spacing: -0.04em;
+      }
+
+      .focusline {
+        margin: 0 0 10px;
+        color: var(--muted2);
+        font-size: 14px;
       }
 
       .headline {
@@ -245,15 +332,23 @@
         gap: 10px;
         margin-top: 18px;
         flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
       }
 
       .hero-ctas a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         font-size: 13px;
         color: var(--text);
         padding: 10px 12px;
         border: 1px solid var(--border);
         border-radius: var(--radius2);
         background: transparent;
+        line-height: 1;
+        white-space: nowrap;
+        flex: 0 0 auto;
         transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
       }
 
@@ -268,6 +363,77 @@
         border-color: var(--primary-bg);
       }
 
+      .hero-ctas a.contact-btn {
+        background: #dc2626;
+        border-color: #dc2626;
+        color: #ffffff;
+      }
+
+      .hero-ctas a.contact-btn:hover {
+        background: #b91c1c;
+        border-color: #b91c1c;
+      }
+
+      .hero-ctas a.contact-btn[aria-current="page"] {
+        background: #dc2626;
+        border-color: #dc2626;
+        color: #ffffff;
+      }
+
+      .hero-cta-spacer {
+        flex: 1 1 auto;
+        min-width: 8px;
+      }
+
+      .social-row {
+        display: grid;
+        gap: 8px;
+        margin-top: 16px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .social-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .social-links a {
+        font-size: 13px;
+        color: var(--text);
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius2);
+        font-weight: 600;
+        background: transparent;
+        transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+      }
+
+      .social-links a:hover {
+        background: var(--surface2);
+        border-color: var(--text);
+      }
+
+      .social-links a.disabled {
+        color: var(--muted2);
+        border-style: dashed;
+        text-decoration: line-through;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      .notice {
+        color: var(--muted2);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
       .meta {
         margin-top: 16px;
         display: flex;
@@ -275,6 +441,10 @@
         flex-wrap: wrap;
         color: var(--muted2);
         font-size: 12px;
+      }
+
+      .hero .meta {
+        margin-top: 8px;
       }
 
       .hero-card {
@@ -350,6 +520,7 @@
 
       .view {
         display: none;
+        scroll-margin-top: 84px;
       }
 
       .view[aria-hidden="false"] {
@@ -633,6 +804,11 @@
         line-height: 1.55;
       }
 
+      .panel .notice {
+        margin-top: -6px;
+        margin-bottom: 12px;
+      }
+
       .field {
         display: grid;
         gap: 6px;
@@ -751,26 +927,29 @@
     <div class="wrap">
       <header class="topbar" role="banner">
         <a class="brand" href="#top" aria-label="Home">
-          <div class="mark" aria-hidden="true"></div>
+          <div class="mark" aria-hidden="true">
+            <img
+              src="../assets/headshot.jpg"
+              alt=""
+              onerror="this.onerror=null; this.src='../assets/headshot-placeholder.svg';"
+            />
+          </div>
           <div>
-            <strong>Chace Raiter</strong>
-            <span>Portfolio</span>
+            <strong>ChaceRaiter.com</strong>
+            <span>Multidisciplinary Engineer | SF Bay Area</span>
           </div>
         </a>
 
-        <nav class="nav" aria-label="Primary">
-          <a href="#projects" data-view-link="projects">View projects</a>
-          <a href="#resume" data-view-link="resume">View resume</a>
-          <a href="#blog" data-view-link="writing">View blog</a>
-          <a href="#contact" data-view-link="contact">Contact</a>
-          <a href="#about">About</a>
-        </nav>
+        <div class="mid">
+          <div class="midrow">
+            <div class="view-indicator" id="viewIndicator" aria-live="polite">Viewing: Projects</div>
+            <button class="backtotop" id="backToTop" type="button">Back to top</button>
+          </div>
+        </div>
 
         <div class="actions">
-          <button class="btn ghost" id="themeToggle" type="button" aria-label="Toggle theme">Theme</button>
-          <a class="btn primary" href="#contact" data-view-link="contact">
-            Let’s Talk
-          </a>
+          <button class="btn invert" id="themeToggle" type="button" aria-label="Toggle theme">Theme</button>
+          <a class="btn contact-btn" href="#contact" data-view-link="contact">Contact me</a>
         </div>
       </header>
 
@@ -778,26 +957,39 @@
         <section class="hero" id="top">
           <div>
             <h1>Chace Raiter</h1>
+            <div class="focusline">
+              Focus: product engineering <span aria-hidden="true">·</span> Interests: dev tools, UX, systems
+            </div>
+            <div class="meta">
+              <span>Location: (set later)</span>
+            </div>
             <p class="headline">Projects with live instances, walkthrough videos, and code.</p>
             <p class="lede">This is a static mockup for critique: minimal, content-forward, and easy to scan.</p>
 
-            <div class="hero-ctas">
+            <div class="social-row" aria-label="Social links">
+              <div class="social-label">Social links, so you know I’m a real person!</div>
+              <div class="social-links">
+                <a href="https://github.com/chaceraiter" target="_blank" rel="noreferrer" aria-label="GitHub">GitHub</a>
+                <a
+                  href="https://www.linkedin.com/in/chaceraiter"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  >LinkedIn</a
+                >
+                <a href="https://x.com/chaceraiter" target="_blank" rel="noreferrer" aria-label="X / Twitter">X / Twitter</a>
+                <a href="#" class="disabled" aria-label="YouTube (not set up yet)">YouTube (soon)</a>
+              </div>
+            </div>
+
+            <div class="hero-ctas" aria-label="Primary sections">
               <a href="#projects" data-view-link="projects">View projects</a>
               <a href="#resume" data-view-link="resume">View resume</a>
               <a href="#blog" data-view-link="writing">View blog</a>
-              <a href="#" aria-label="GitHub link (placeholder)">GitHub</a>
-              <a href="#" aria-label="LinkedIn link (placeholder)">LinkedIn</a>
-              <a href="#" aria-label="X/Twitter link (placeholder)">X</a>
-              <a href="#" aria-label="YouTube link (placeholder)">YouTube</a>
+              <span class="hero-cta-spacer" aria-hidden="true"></span>
+              <a class="contact-btn" href="#contact" data-view-link="contact">Contact me</a>
             </div>
 
-            <div class="meta" id="about">
-              <span>Focus: product engineering</span>
-              <span>·</span>
-              <span>Interests: dev tools, UX, systems</span>
-              <span>·</span>
-              <span>Location: (set later)</span>
-            </div>
           </div>
 
           <aside class="hero-card" aria-label="Profile preview">
@@ -815,7 +1007,14 @@
 
         <div class="content-grid" aria-label="Main content with sidebar">
           <div class="main-col">
-        <section class="view section projects" id="view-projects" data-view="projects" aria-hidden="false" aria-label="Projects">
+        <section
+          class="view section projects"
+          id="projects"
+          data-view="projects"
+          aria-hidden="false"
+          aria-label="Projects"
+          tabindex="-1"
+        >
           <div class="section-head">
             <h2>Projects</h2>
             <div class="hint">Each tile: thumbnail + Live, Video, GitHub, Docs</div>
@@ -913,10 +1112,10 @@
           </div>
         </section>
 
-        <section class="view section" id="view-resume" data-view="resume" aria-hidden="true" aria-label="Resume">
+        <section class="view section" id="resume" data-view="resume" aria-hidden="true" aria-label="Resume" tabindex="-1">
           <h2 class="view-title">Resume</h2>
           <p class="view-note">
-            Last updated: Jun 2025 · <a href="../resume/index.html" target="_blank" rel="noreferrer">Open resume page</a>
+            Last updated: Jun 2025
           </p>
           <div class="resume-actions">
             <a class="btn" href="../resume/resume.pdf" target="_blank" rel="noreferrer">Open PDF (new tab)</a>
@@ -925,7 +1124,7 @@
           <iframe class="pdf" src="../resume/resume.pdf" title="Resume PDF preview"></iframe>
         </section>
 
-        <section class="view section" id="view-writing" data-view="writing" aria-hidden="true" aria-label="Blog">
+        <section class="view section" id="blog" data-view="writing" aria-hidden="true" aria-label="Blog" tabindex="-1">
           <div class="section-head">
             <h2>Blog</h2>
             <div class="hint">Link out or mirror later</div>
@@ -961,7 +1160,7 @@
           </div>
         </section>
 
-        <section class="view section" id="view-contact" data-view="contact" aria-hidden="true" aria-label="Contact">
+        <section class="view section" id="contact" data-view="contact" aria-hidden="true" aria-label="Contact" tabindex="-1">
           <div class="section-head">
             <h2>Contact</h2>
             <div class="hint">Form is non-functional in mockup</div>
@@ -989,26 +1188,31 @@
                 </form>
               </div>
 
-              <div class="panel">
-                <h3>Direct links</h3>
-                <p>Fast paths for recruiters/clients: email, calendar, and socials.</p>
-                <div class="hero-ctas">
-                  <a class="btn" href="#" aria-label="Email link (placeholder)">Email</a>
-                  <a class="btn" href="#" aria-label="Calendar link (placeholder)">Calendar</a>
-                  <a class="btn" href="#" aria-label="GitHub link (placeholder)">GitHub</a>
-                  <a class="btn" href="#" aria-label="LinkedIn link (placeholder)">LinkedIn</a>
-                  <a class="btn" href="#" aria-label="X/Twitter link (placeholder)">X</a>
-                  <a class="btn" href="#" aria-label="YouTube link (placeholder)">YouTube</a>
-                </div>
-                <div class="meta" style="margin-top: 12px">
-                  <span>Availability: (set later)</span>
-                  <span>·</span>
-                  <span>Time zone: (set later)</span>
+                  <div class="panel">
+                    <h3>Direct links</h3>
+                    <p>Fast paths for recruiters/clients: email, calendar, and socials.</p>
+                    <div class="notice">
+                      Tip: email is copy-only here to reduce spam scraping. You can still message me on LinkedIn.
+                    </div>
+                    <div class="hero-ctas">
+                      <button class="btn" id="copyEmail" type="button">Copy email</button>
+                      <a class="btn" href="https://www.linkedin.com/in/chaceraiter" target="_blank" rel="noreferrer"
+                        >LinkedIn (message)</a
+                      >
+                      <a class="btn" href="#" aria-label="Calendar link (placeholder)">Calendar</a>
+                      <a class="btn" href="https://github.com/chaceraiter" target="_blank" rel="noreferrer">GitHub</a>
+                      <a class="btn" href="https://x.com/chaceraiter" target="_blank" rel="noreferrer">X / Twitter</a>
+                      <a class="btn disabled" href="#" aria-label="YouTube (not set up yet)">YouTube (soon)</a>
+                    </div>
+                    <div class="meta" style="margin-top: 12px">
+                      <span>Availability: (set later)</span>
+                      <span>·</span>
+                      <span>Time zone: (set later)</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
           </div>
 
           <aside class="rail-col" aria-label="Sidebar">
@@ -1068,21 +1272,20 @@
       })
 
       let railAlignTimer
-      const alignRailToActiveView = () => {
+      const alignRailToProjectsGrid = () => {
         const desktop = window.matchMedia("(min-width: 980px)").matches
         if (!desktop) {
           root.style.removeProperty("--rail-offset")
           return
         }
 
-        const active = document.querySelector('.view[data-view][aria-hidden="false"]')
-        if (!active) return
+        const projects = document.querySelector('.view[data-view="projects"][aria-hidden="false"]')
+        if (!projects) return
 
-        const target = active.querySelector(".grid") ?? active
-        const activeRect = active.getBoundingClientRect()
-        const targetRect = target.getBoundingClientRect()
-        const delta = targetRect.top - activeRect.top
+        const grid = projects.querySelector(".grid")
+        if (!grid) return
 
+        const delta = grid.getBoundingClientRect().top - projects.getBoundingClientRect().top
         root.style.setProperty("--rail-offset", `${Math.max(0, delta).toFixed(2)}px`)
       }
 
@@ -1093,6 +1296,21 @@
         return "projects"
       }
 
+      const getAnchorIdFromHash = () => {
+        const raw = window.location.hash.replace("#", "").trim()
+        if (raw === "projects" || raw === "resume" || raw === "blog" || raw === "contact") return raw
+        return null
+      }
+
+      const getViewLabel = (view) => {
+        if (view === "projects") return "Projects"
+        if (view === "resume") return "Resume"
+        if (view === "writing") return "Blog"
+        if (view === "contact") return "Contact"
+        return "Projects"
+      }
+
+      const viewIndicator = document.getElementById("viewIndicator")
       const setView = (view) => {
         const views = document.querySelectorAll(".view[data-view]")
         for (const section of views) {
@@ -1106,23 +1324,78 @@
           else link.removeAttribute("aria-current")
         }
 
-        alignRailToActiveView()
+        if (viewIndicator) viewIndicator.textContent = `Viewing: ${getViewLabel(view)}`
+        document.title = `${getViewLabel(view)} · Portfolio Mockup`
+
+        if (view === "projects") alignRailToProjectsGrid()
       }
 
-      const onHashChange = () => setView(getViewFromHash())
+      const scrollToAnchor = () => {
+        const anchorId = getAnchorIdFromHash()
+        if (!anchorId) return
+        const el = document.getElementById(anchorId)
+        if (!el) return
+
+        try {
+          el.focus({ preventScroll: true })
+        } catch {
+          // no-op
+        }
+
+        el.scrollIntoView({ block: "start" })
+      }
+
+      let didInitialHashScroll = false
+      const onHashChange = () => {
+        setView(getViewFromHash())
+        if (!didInitialHashScroll) {
+          didInitialHashScroll = true
+          scrollToAnchor()
+        }
+      }
 
       window.addEventListener("hashchange", onHashChange)
       onHashChange()
 
-      alignRailToActiveView()
       window.addEventListener("resize", () => {
         window.clearTimeout(railAlignTimer)
-        railAlignTimer = window.setTimeout(alignRailToActiveView, 80)
+        railAlignTimer = window.setTimeout(() => {
+          if (getViewFromHash() === "projects") alignRailToProjectsGrid()
+        }, 80)
       })
-      window.addEventListener("load", alignRailToActiveView)
+      window.addEventListener("load", alignRailToProjectsGrid)
 
       const year = document.getElementById("year")
       if (year) year.textContent = String(new Date().getFullYear())
+
+      const setScrolled = () => {
+        if (window.scrollY > 120) root.dataset.scrolled = "true"
+        else delete root.dataset.scrolled
+      }
+      setScrolled()
+      window.addEventListener("scroll", setScrolled, { passive: true })
+
+      const backToTop = document.getElementById("backToTop")
+      backToTop?.addEventListener("click", () => {
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" })
+      })
+
+      // Email handling: keep it copy-only by default to reduce scraping.
+      // REFRESH: contact-email
+      const emailUser = "(set)"
+      const emailDomain = "(set)"
+      const email = `${emailUser}@${emailDomain}`
+      const copyEmail = document.getElementById("copyEmail")
+      copyEmail?.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(email)
+          copyEmail.textContent = "Copied"
+          window.setTimeout(() => (copyEmail.textContent = "Copy email"), 1200)
+        } catch {
+          window.prompt("Copy email:", email)
+        }
+      })
     </script>
   </body>
 </html>

@@ -10,6 +10,7 @@ This project is being rebuilt from scratch (legacy scaffold is referenced in `le
 - **Content sources (initially):** static data files for projects/links/metadata; optional markdown for posts.
 - **Contact handling (optional):** no-DB default; add serverless/email workflow only if needed.
 - **Hosting strategy:** hybrid by design — some components self-hosted (to demonstrate ops) and some cloud-hosted (for practicality and comparison).
+- **UI shell model (current direction):** persistent header + consistent right rail, with the main area switching “views” (Projects/Resume/Blog/Contact).
 
 ## Technology Stack
 - **Current state:** static HTML mockup (`mockups/homepage.html`) used to iterate on layout.
@@ -28,11 +29,15 @@ This project is being rebuilt from scratch (legacy scaffold is referenced in `le
   - link-out to a blog, or
   - local markdown posts for a `/writing` section
 - **“On X” excerpts** should be treated as secondary content (right rail on desktop) and ideally loaded without heavy third-party embeds.
+- **Contact info** should default to a spam-resistant approach:
+  - Prefer a contact form (later) or a “copy email” button over raw `mailto:` everywhere.
+  - LinkedIn is an acceptable “message me” path (even if it can’t deep-link straight into DMs reliably).
 
 ## Key Design Patterns
 - **No database by default:** only introduce a DB for features that truly need persistence/query (e.g., admin UI, stored contact submissions, user accounts, demo backends).
 - **Build-time rendering:** generate pages from data files/markdown for speed and simplicity.
 - **Progressive enhancement:** keep core content accessible without JavaScript; JS only for small UX wins (theme toggle, etc.).
+- **One-page “views” with deep links:** use URL state (hash or routes) so Projects/Resume/Blog/Contact can be linked directly.
 
 ## Technical Decisions
 ### Resume Accessibility
@@ -47,6 +52,9 @@ This project is being rebuilt from scratch (legacy scaffold is referenced in `le
 ### Security & Privacy Defaults
 - Avoid third-party “timeline embeds” for X that add tracking/heavy scripts; prefer static excerpts with link-out or build-time fetched content with caching.
 - Email exposure: prefer a contact form workflow; if direct email is shown, consider basic address obfuscation and/or “copy” UX rather than raw `mailto:` everywhere.
+
+### Local Preview Notes
+- Some browsers (notably Safari) can behave oddly when opening `file://` HTML directly from Finder and loading sibling assets; prefer running a tiny local server for preview.
 
 ## Deployment Notes (Aspirational)
 - **Self-hosted components** are a feature, not an accident: prefer containerized demos, reproducible deploys, and documented ops (health checks, logging, backups where needed).

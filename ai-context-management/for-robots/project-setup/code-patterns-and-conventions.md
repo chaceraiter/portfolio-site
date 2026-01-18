@@ -20,6 +20,9 @@
 - Make project actions easy to scan/click:
   - “Live / Video / GitHub” should be visually prominent and consistent across tiles.
   - Prefer clear text labels over ambiguous icons.
+- **Persistent shell UX:** keep the header + right rail stable while switching the main “view” (Projects / Resume / Blog / Contact).
+- **Deep-linkable views:** use URL state (`#projects`, `#resume`, `#blog`, `#contact`) so each view is directly linkable and works with back/forward.
+- **Social links:** keep them visually separate from the site “view” controls; it’s OK to be lightly playful (“real person” tone), but keep it clean.
 
 ## Accessibility
 - Maintain visible focus states.
@@ -28,4 +31,4 @@
 
 ## Security & Privacy
 - Prefer link-outs / lightweight excerpts over third-party social embeds.
-- If showing an email address, prefer a contact form workflow; avoid spraying raw `mailto:` links everywhere.
+- If showing an email address, prefer a contact form workflow or a copy-to-clipboard button; avoid spraying raw `mailto:` links everywhere.

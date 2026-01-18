@@ -14,6 +14,7 @@ This repo is intentionally “content-forward”. To keep it feeling real and cu
 ## Current Tagged Items
 - `REFRESH: resume-last-updated` (resume page date)
 - `REFRESH: resume-pdf` (resume PDF content)
+- `REFRESH: contact-email` (email copy button in contact view)
 
 ## Optional (Later)
 - Add a single `site.json` / `site.ts` content file with `lastUpdated` fields and generate pages from it.

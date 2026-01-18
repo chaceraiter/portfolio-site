@@ -23,6 +23,7 @@ These rules apply to all work in this repo unless explicitly overridden in the p
   - Update `ai-context-management/for-robots/current-work/current-work-focus.md` when focus changes.
   - Update `ai-context-management/for-robots/current-work/current-context-for-new-chat.md` with current status, decisions, and active issues.
 - **Commits:** small, descriptive commits preferred; avoid bundling unrelated changes.
+- **Personal assets:** treat items like `assets/headshot.jpg` and `resume/resume.pdf` as public once committed; ask before committing personal docs/images if not explicitly requested.
 
 ## Red Lines (Never Do This)
 - Never commit `.env` files, private keys, tokens, credentials, or personal-only secrets.

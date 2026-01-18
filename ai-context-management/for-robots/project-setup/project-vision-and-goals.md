@@ -35,6 +35,8 @@ Build a clean, fast, and professional personal portfolio site that showcases pro
 - Make content feel alive: “On X” excerpts can signal daily work/thoughts; writing signals depth.
 - Clear hierarchy: projects should be easy to scan and click; side content stays secondary.
 - Resume should be recruiter-friendly: viewable page + downloadable PDF (no surprise auto-download).
+- Prefer a “persistent shell” feel: header/rail stays stable while the main content switches between Projects / Resume / Blog / Contact.
+- Keep social links visually separate from site navigation (“real person” tone is OK, lighthearted and human).
 
 ## Non-Goals (For Now)
 - Heavy CMS or complex admin tooling unless it clearly pays off.
