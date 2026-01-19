@@ -22,6 +22,8 @@
         --rail: 300px;
         --primary-bg: #111111;
         --primary-text: #ffffff;
+        --hero-pad-top: 32px;
+        --hero-pad-bottom: 18px;
       }
 
       [data-theme="dark"] {
@@ -291,7 +293,7 @@
       }
 
       .hero {
-        padding: 44px 0 8px;
+        padding: var(--hero-pad-top) 0 var(--hero-pad-bottom);
         display: grid;
         grid-template-columns: 1fr;
         gap: 22px;
@@ -299,7 +301,7 @@
       }
 
       h1 {
-        margin: 14px 0 10px;
+        margin: 6px 0 10px;
         font-size: clamp(36px, 4vw, 54px);
         line-height: 1.02;
         letter-spacing: -0.04em;
@@ -312,7 +314,7 @@
       }
 
       .headline {
-        margin: 0;
+        margin: 0 0 12px;
         color: var(--muted);
         font-size: 16px;
         line-height: 1.55;
@@ -330,7 +332,7 @@
       .hero-ctas {
         display: flex;
         gap: 10px;
-        margin-top: 18px;
+        margin-top: 10px;
         flex-wrap: wrap;
         align-items: center;
         width: 100%;
@@ -388,8 +390,8 @@
       .social-row {
         display: grid;
         gap: 8px;
-        margin-top: 16px;
-        padding-bottom: 14px;
+        margin-top: 8px;
+        padding-bottom: 10px;
         border-bottom: 1px solid var(--border);
       }
 
@@ -455,6 +457,10 @@
         box-shadow: var(--shadow);
       }
 
+      .hero-card--rail {
+        display: none;
+      }
+
       .portrait {
         border-radius: var(--radius2);
         aspect-ratio: 1 / 1;
@@ -489,7 +495,7 @@
       }
 
       .section.projects {
-        margin-top: 8px;
+        margin-top: 0;
       }
 
       .section.projects .section-head {
@@ -528,7 +534,7 @@
       }
 
       .view.section {
-        margin-top: 8px;
+        margin-top: 0;
       }
 
       .view-title {
@@ -888,18 +894,18 @@
       }
 
       @media (min-width: 980px) {
-        .hero {
-          grid-template-columns: 1fr var(--rail);
-          gap: 28px;
-        }
         .content-grid {
           grid-template-columns: 1fr var(--rail);
         }
         .rail-col {
           display: block;
+          padding-top: calc(var(--hero-pad-top) + 6px);
         }
-        .rail {
-          margin-top: var(--rail-offset, 0px);
+        .hero-card--mobile {
+          display: none;
+        }
+        .hero-card--rail {
+          display: block;
         }
         .card {
           grid-column: span 6;
@@ -954,59 +960,55 @@
       </header>
 
       <main id="content">
-        <section class="hero" id="top">
-          <div>
-            <h1>Chace Raiter</h1>
-            <div class="focusline">
-              Focus: product engineering <span aria-hidden="true">·</span> Interests: dev tools, UX, systems
-            </div>
-            <div class="meta">
-              <span>Location: (set later)</span>
-            </div>
-            <p class="headline">Projects with live instances, walkthrough videos, and code.</p>
-            <p class="lede">This is a static mockup for critique: minimal, content-forward, and easy to scan.</p>
-
-            <div class="social-row" aria-label="Social links">
-              <div class="social-label">Social links, so you know I’m a real person!</div>
-              <div class="social-links">
-                <a href="https://github.com/chaceraiter" target="_blank" rel="noreferrer" aria-label="GitHub">GitHub</a>
-                <a
-                  href="https://www.linkedin.com/in/chaceraiter"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
-                  >LinkedIn</a
-                >
-                <a href="https://x.com/chaceraiter" target="_blank" rel="noreferrer" aria-label="X / Twitter">X / Twitter</a>
-                <a href="#" class="disabled" aria-label="YouTube (not set up yet)">YouTube (soon)</a>
-              </div>
-            </div>
-
-            <div class="hero-ctas" aria-label="Primary sections">
-              <a href="#projects" data-view-link="projects">View projects</a>
-              <a href="#resume" data-view-link="resume">View resume</a>
-              <a href="#blog" data-view-link="writing">View blog</a>
-              <span class="hero-cta-spacer" aria-hidden="true"></span>
-              <a class="contact-btn" href="#contact" data-view-link="contact">Contact me</a>
-            </div>
-
-          </div>
-
-          <aside class="hero-card" aria-label="Profile preview">
-            <div class="portrait" role="img" aria-label="Headshot placeholder">
-              <img
-                src="../assets/headshot.jpg"
-                alt="Headshot"
-                onerror="this.onerror=null; this.src='../assets/headshot-placeholder.svg';"
-              />
-            </div>
-            <h3>What this page should answer</h3>
-            <p>Who I am, what I build, and proof via projects with Live / Video / GitHub links.</p>
-          </aside>
-        </section>
-
         <div class="content-grid" aria-label="Main content with sidebar">
           <div class="main-col">
+            <section class="hero" id="top">
+              <div>
+                <h1>Chace Raiter</h1>
+                <div class="social-row" aria-label="Social links">
+                  <div class="social-label">Social links, so you (kind of) know I’m a real person!</div>
+                  <div class="social-links">
+                    <a href="https://github.com/chaceraiter" target="_blank" rel="noreferrer" aria-label="GitHub">GitHub</a>
+                    <a
+                      href="https://www.linkedin.com/in/chaceraiter"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="LinkedIn"
+                      >LinkedIn</a
+                    >
+                    <a
+                      href="https://x.com/chaceraiter"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="X / Twitter"
+                      >X / Twitter</a
+                    >
+                    <a href="#" class="disabled" aria-label="YouTube (not set up yet)">YouTube (soon)</a>
+                  </div>
+                </div>
+
+                <div class="hero-ctas" aria-label="Primary sections">
+                  <a href="#projects" data-view-link="projects">View projects</a>
+                  <a href="#resume" data-view-link="resume">View resume</a>
+                  <a href="#blog" data-view-link="writing">View blog</a>
+                  <span class="hero-cta-spacer" aria-hidden="true"></span>
+                  <a class="contact-btn" href="#contact" data-view-link="contact">Contact me</a>
+                </div>
+              </div>
+
+              <aside class="hero-card hero-card--mobile" aria-label="Profile preview">
+                <div class="portrait" role="img" aria-label="Headshot placeholder">
+                  <img
+                    src="../assets/headshot.jpg"
+                    alt="Headshot"
+                    onerror="this.onerror=null; this.src='../assets/headshot-placeholder.svg';"
+                  />
+                </div>
+                <h3>What this page should answer</h3>
+                <p>Who I am, what I build, and proof via projects with Live / Video / GitHub links.</p>
+              </aside>
+            </section>
+
         <section
           class="view section projects"
           id="projects"
@@ -1217,6 +1219,18 @@
 
           <aside class="rail-col" aria-label="Sidebar">
             <div class="rail">
+              <div class="hero-card hero-card--rail" aria-label="Profile preview">
+                <div class="portrait" role="img" aria-label="Headshot placeholder">
+                  <img
+                    src="../assets/headshot.jpg"
+                    alt="Headshot"
+                    onerror="this.onerror=null; this.src='../assets/headshot-placeholder.svg';"
+                  />
+                </div>
+                <h3>What this page should answer</h3>
+                <p>Who I am, what I build, and proof via projects with Live / Video / GitHub links.</p>
+              </div>
+
               <div class="panel" aria-label="X sidebar">
                 <h3>X / Twitter</h3>
                 <p>Daily notes and in-progress thoughts — a quick “I’m actively building” signal.</p>
@@ -1271,24 +1285,6 @@
         setToggleLabel()
       })
 
-      let railAlignTimer
-      const alignRailToProjectsGrid = () => {
-        const desktop = window.matchMedia("(min-width: 980px)").matches
-        if (!desktop) {
-          root.style.removeProperty("--rail-offset")
-          return
-        }
-
-        const projects = document.querySelector('.view[data-view="projects"][aria-hidden="false"]')
-        if (!projects) return
-
-        const grid = projects.querySelector(".grid")
-        if (!grid) return
-
-        const delta = grid.getBoundingClientRect().top - projects.getBoundingClientRect().top
-        root.style.setProperty("--rail-offset", `${Math.max(0, delta).toFixed(2)}px`)
-      }
-
       const getViewFromHash = () => {
         const raw = window.location.hash.replace("#", "").trim()
         if (raw === "blog") return "writing"
@@ -1326,8 +1322,6 @@
 
         if (viewIndicator) viewIndicator.textContent = `Viewing: ${getViewLabel(view)}`
         document.title = `${getViewLabel(view)} · Portfolio Mockup`
-
-        if (view === "projects") alignRailToProjectsGrid()
       }
 
       const scrollToAnchor = () => {
@@ -1356,14 +1350,6 @@
 
       window.addEventListener("hashchange", onHashChange)
       onHashChange()
-
-      window.addEventListener("resize", () => {
-        window.clearTimeout(railAlignTimer)
-        railAlignTimer = window.setTimeout(() => {
-          if (getViewFromHash() === "projects") alignRailToProjectsGrid()
-        }, 80)
-      })
-      window.addEventListener("load", alignRailToProjectsGrid)
 
       const year = document.getElementById("year")
       if (year) year.textContent = String(new Date().getFullYear())
