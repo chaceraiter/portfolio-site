@@ -907,13 +907,46 @@ footer {
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .topbar {
-    padding: 10px 10px;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 10px;
   }
-  .nav {
+  .mid {
     display: none;
   }
+  .brand strong {
+    font-size: 13px;
+  }
+  .brand span {
+    display: none;
+  }
+  .actions .btn.invert {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .actions .btn.contact-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  .hero-ctas {
+    gap: 8px;
+  }
+  .hero-ctas a {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .social-links a {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 520px) {
   .card-actions {
     grid-template-columns: 1fr;
   }
