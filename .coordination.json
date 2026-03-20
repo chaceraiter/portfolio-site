@@ -1,0 +1,6 @@
+{
+  "agent_name": "portfolio-site",
+  "groupchat_dir": "/Users/chace/projects/portfolio-site-coordination/impl/groupchat/",
+  "status_board": "/Users/chace/projects/portfolio-site-coordination/impl/status.md",
+  "role_file": "/Users/chace/projects/portfolio-site-coordination/impl/portfolio-site/role.md"
+}
