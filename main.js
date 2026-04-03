@@ -1,114 +1,64 @@
 const root = document.documentElement;
-const key = "portfolio_theme";
-const saved = localStorage.getItem(key);
-if (saved === "light" || saved === "dark") root.dataset.theme = saved;
-if (!root.dataset.theme) root.dataset.theme = "light";
+if (!root.dataset.theme) root.dataset.theme = "dark";
 
-const toggle = document.getElementById("themeToggle");
-const setToggleLabel = () => {
-  toggle.textContent = root.dataset.theme === "dark" ? "Light theme" : "Dark theme";
-};
-setToggleLabel();
-toggle?.addEventListener("click", () => {
-  const next = root.dataset.theme === "light" ? "dark" : "light";
-  root.dataset.theme = next;
-  localStorage.setItem(key, next);
-  setToggleLabel();
-});
-
-const getViewFromHash = () => {
-  const raw = window.location.hash.replace("#", "").trim();
-  if (raw === "blog") return "writing";
-  if (raw === "projects" || raw === "resume" || raw === "writing" || raw === "contact") return raw;
-  return "projects";
-};
-
-const getAnchorIdFromHash = () => {
-  const raw = window.location.hash.replace("#", "").trim();
-  if (raw === "projects" || raw === "resume" || raw === "blog" || raw === "contact") return raw;
-  return null;
-};
-
-const getViewLabel = (view) => {
-  if (view === "projects") return "Projects";
-  if (view === "resume") return "Resume";
-  if (view === "writing") return "Blog";
-  if (view === "contact") return "Contact";
-  return "Projects";
-};
-
-const viewIndicator = document.getElementById("viewIndicator");
-const setView = (view) => {
-  const views = document.querySelectorAll(".view[data-view]");
-  for (const section of views) {
-    section.setAttribute("aria-hidden", section.getAttribute("data-view") === view ? "false" : "true");
-  }
-
-  const links = document.querySelectorAll("[data-view-link]");
-  for (const link of links) {
-    const isActive = link.getAttribute("data-view-link") === view;
-    if (isActive) link.setAttribute("aria-current", "page");
-    else link.removeAttribute("aria-current");
-  }
-
-  if (viewIndicator) viewIndicator.textContent = `Viewing: ${getViewLabel(view)}`;
-  document.title = `${getViewLabel(view)} — Chace Raiter`;
-};
-
-const scrollToAnchor = () => {
-  const anchorId = getAnchorIdFromHash();
-  if (!anchorId) return;
-  const el = document.getElementById(anchorId);
-  if (!el) return;
-
-  try {
-    el.focus({ preventScroll: true });
-  } catch {
-    // no-op
-  }
-
-  el.scrollIntoView({ block: "start" });
-};
-
-let didInitialHashScroll = false;
-const onHashChange = () => {
-  setView(getViewFromHash());
-  if (!didInitialHashScroll) {
-    didInitialHashScroll = true;
-    scrollToAnchor();
-  }
-};
-
-window.addEventListener("hashchange", onHashChange);
-onHashChange();
+// Snap contribution graph width to clean column boundaries
+const contribImg = document.querySelector(".contrib-graph");
+const contribWrap = document.querySelector(".contrib-wrap");
+if (contribImg && contribWrap) {
+  const snapToColumns = () => {
+    const imgW = contribImg.offsetWidth;
+    const imgH = contribImg.offsetHeight;
+    // ghchart SVG is 53 columns wide; rendered column width = imgW / 53
+    const colW = imgW / 53;
+    const maxW = contribWrap.parentElement.offsetWidth - contribWrap.previousElementSibling.offsetWidth - 24;
+    const cols = Math.floor(maxW / colW);
+    contribWrap.style.width = `${(cols * colW) - 2}px`;
+  };
+  contribImg.addEventListener("load", snapToColumns);
+  if (contribImg.complete) snapToColumns();
+  window.addEventListener("resize", snapToColumns);
+}
 
 const year = document.getElementById("year");
 if (year) year.textContent = String(new Date().getFullYear());
 
-const setScrolled = () => {
-  if (window.scrollY > 120) root.dataset.scrolled = "true";
-  else delete root.dataset.scrolled;
-};
-setScrolled();
-window.addEventListener("scroll", setScrolled, { passive: true });
+// REFRESH: contact-email
+const emailUser = "contact";
+const emailDomain = "chaceraiter.com";
+const email = `${emailUser}@${emailDomain}`;
+const emailToggle = document.getElementById("emailToggle");
+const copyEmail = document.getElementById("copyEmail");
+const emailPopover = document.getElementById("emailPopover");
+const emailAddr = document.getElementById("emailAddr");
+let popoverTimeout;
 
-const backToTop = document.getElementById("backToTop");
-backToTop?.addEventListener("click", () => {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+if (emailAddr) emailAddr.textContent = email;
+
+emailToggle?.addEventListener("click", () => {
+  emailPopover?.classList.toggle("show");
+  copyEmail?.classList.remove("copied");
+  clearTimeout(popoverTimeout);
+  if (emailPopover?.classList.contains("show")) {
+    popoverTimeout = setTimeout(() => emailPopover?.classList.remove("show"), 5000);
+  }
 });
 
-// Email handling: keep it copy-only by default to reduce scraping.
-const emailUser = "(set)";
-const emailDomain = "(set)";
-const email = `${emailUser}@${emailDomain}`;
-const copyEmail = document.getElementById("copyEmail");
 copyEmail?.addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(email);
-    copyEmail.textContent = "Copied!";
-    window.setTimeout(() => (copyEmail.textContent = "Copy email"), 1200);
+    copyEmail.classList.add("copied");
+    clearTimeout(popoverTimeout);
+    popoverTimeout = setTimeout(() => {
+      emailPopover?.classList.remove("show");
+      copyEmail.classList.remove("copied");
+    }, 5000);
   } catch {
     window.prompt("Copy email:", email);
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".email-wrap")) {
+    emailPopover?.classList.remove("show");
   }
 });
