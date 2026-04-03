@@ -1,6 +1,32 @@
 const root = document.documentElement;
 if (!root.dataset.theme) root.dataset.theme = "dark";
 
+// Environment-aware project links
+const isDev = window.location.hostname.startsWith("dev");
+const links = {
+  "infra-test-live": {
+    dev: "https://test.chaceraiter.com",
+    prod: "https://test.chaceraiter.com"
+  },
+  "mafia-live": {
+    dev: "/llmafia/",
+    prod: "https://llmafia.chaceraiter.com/"
+  },
+  "vta-live": {
+    dev: "/vta/",
+    prod: "https://assistant.chaceraiter.com/"
+  }
+};
+
+for (const [key, urls] of Object.entries(links)) {
+  const el = document.querySelector(`[data-link="${key}"]`);
+  if (el) {
+    el.href = isDev ? urls.dev : urls.prod;
+    el.target = "_blank";
+    el.rel = "noreferrer";
+  }
+}
+
 // Snap contribution graph width to clean column boundaries
 const contribImg = document.querySelector(".contrib-graph");
 const contribWrap = document.querySelector(".contrib-wrap");
